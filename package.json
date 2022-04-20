@@ -1,0 +1,24 @@
+{
+  "name": "mongoapi",
+  "version": "1.0.0",
+  "description": "node api for mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sridharzgit/nodeapi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sridharzgit/nodeapi/issues"
+  },
+  "homepage": "https://github.com/sridharzgit/nodeapi#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0"
+  }
+}
