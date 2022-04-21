@@ -9,8 +9,11 @@ mongoose.connect(url)
 
 const con = mongoose.connection
 const appsRouter = require('./routes/apps')
+const viewsRouter = require('./routes/views')
+const folderViewsRouter = require('./routes/folderViews')
 app.use(express.json())
 app.use('/apps',appsRouter)
+app.use('/views',viewsRouter)
 con.on('open', function(){
   console.log("connected")
 })

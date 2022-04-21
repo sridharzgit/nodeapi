@@ -15,8 +15,10 @@ router.get('/', async (req, res) => {
 
 router.post('/create', async (req, res) => {
     try {
+        const apps = await App.find()
+        const app_id = "a"+apps.length
         const app = new App({
-            id: req.body.id,
+            id: app_id,
             name: req.body.name,
             type: req.body.type
         })

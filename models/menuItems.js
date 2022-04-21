@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const appSchema = new mongoose.Schema({
+const menuItemSchema = new mongoose.Schema({
     id: {
         type: String,
         required: true
@@ -12,13 +12,10 @@ const appSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        default:"App"
+        required: true,
+        enum:["Dashboard","View"]
     },
-    views: {
-        type: Array,
-        default:[]
-    }
 });
 
-module.exports = mongoose.model('App',appSchema)
+module.exports = mongoose.model('MenuItem',menuItemSchema)
 

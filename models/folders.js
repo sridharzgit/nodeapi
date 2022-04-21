@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const appSchema = new mongoose.Schema({
+const folderSchema = new mongoose.Schema({
     id: {
         type: String,
         required: true
@@ -12,7 +12,7 @@ const appSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        default:"App"
+        default: "Folder"
     },
     views: {
         type: Array,
@@ -20,5 +20,5 @@ const appSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('App',appSchema)
+module.exports = mongoose.model('Folder',folderSchema)
 
