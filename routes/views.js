@@ -19,14 +19,9 @@ router.get('/:app_id', async (req, res) => {
 router.post('/create', async (req, res) => {
     try {
         const app_id = req.body.app_id
-
         const app =await App.findOne({id:app_id})
-        console.log(app)
-        if(!app.views) {
-            app.views =[]
-        }
         const view_id = app_id+".v"+app.views.length
-        console.log(view_id)
+        console.log("newView Id",view_id)
         const view = new View({
             id: view_id,
             name: req.body.name,
@@ -41,16 +36,12 @@ router.post('/create', async (req, res) => {
 }
 )
 
-router.post('/create', async (req, res) => {
+router.post('/edit', async (req, res) => {
     try {
-        const apps = await App.find()
-        const app_id = "a"+apps.length
-        const app = new App({
-            id: app_id,
-            name: req.body.name,
-            type: req.body.type
-        })
-
+        const app = await App.findOne({id:req.body.app_id})
+        const view=app.views.find(view=>{return view.id===req.body.view_id})
+        const reqView = req.body.view
+        Object.assign(view,reqView)
         const newApp = await app.save()
         res.json(newApp)
     } catch (e) {
@@ -59,6 +50,20 @@ router.post('/create', async (req, res) => {
 }
 )
 
+router.post('/delete', async (req, res) => {
+    try {
+        const app = await App.findOne({id:req.body.app_id})
+        const viewIndex=app.views.findIdex(view=>{return view.id===req.body.view_id})
+        if(viewIndex!==-1) {
+            app.views.splice(viewIndex-1,1)
+        }
+        const newApp = await app.save()
+        res.json(newApp)
+    } catch (e) {
+        res.send('Error' + e)
+    }
+}
+)
 
 
 module.exports = router
