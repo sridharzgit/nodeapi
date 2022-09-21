@@ -2,7 +2,7 @@
 const cors = require('cors')
 const express = require('express');
 const mongoose= require('mongoose')
-const PORT = 8080
+const PORT = 9090
 const url = 'mongodb://localhost:27017/contentStore'
 
 var options = {
@@ -18,11 +18,13 @@ app.listen(PORT, ()=> console.log(`its alive on http://localhost:${PORT}`))
 mongoose.connect(url)
 
 const con = mongoose.connection
-const appsRouter = require('./routes/apps')
-const viewsRouter = require('./routes/views')
-const folderViewsRouter = require('./routes/folderViews')
+const userRouter = require('./routes/user')
+const appsRouter = require('./routes/app')
+const viewsRouter = require('./routes/view')
+const folderViewsRouter = require('./routes/folderView')
 //app.use(cors({origin:'http://localhost:3001/'}))
 app.use(express.json())
+app.use('/user',userRouter)
 app.use('/apps',appsRouter)
 app.use('/views',viewsRouter)
 con.on('open', function(){
@@ -50,7 +52,7 @@ con.on('open', function(){
 //       },
 //     views: {
 //         type:Array
-//     }   
+//     }
 //   });
 
 //   const viewSchema = new Schema({
@@ -66,11 +68,8 @@ con.on('open', function(){
 //       },
 //     views: {
 //         type:Array
-//     },   
+//     },
 //     subViews : {
 //         type:Array
 //     }
 //   });
-
-
-

@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const App = require('../models/apps')
-const MenuItem = require('../models/menuItems')
-const Folder = require('../models/folders')
+const App = require('../models/app')
+const MenuItem = require('../models/menuItem')
+const Folder = require('../models/folder')
 
-// get all apps with app_id given 
+// get all apps with app_id given
 router.get('/:app_id/:folder_id', async (req, res) => {
     try {
         const app_id = req.params.app_id
@@ -24,7 +24,7 @@ router.post('/create', async (req, res) => {
         const app =await App.findOne({id:app_id})
         console.log(app)
         const folder = app.views.find(view=>{return view.id===folder_id})
-        
+
         if(!folder.views) {
             folder.views =[]
         }

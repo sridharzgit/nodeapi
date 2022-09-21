@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const App = require('../models/apps')
-const View = require('../models/menuItems')
+const App = require('../models/app')
+const View = require('../models/menuItem')
 
-// get all apps with app_id given 
+// get all apps with app_id given
 router.get('/:app_id', async (req, res) => {
     try {
         const app_id = req.params.app_id

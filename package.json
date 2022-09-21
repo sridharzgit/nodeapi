@@ -18,8 +18,17 @@
   },
   "homepage": "https://github.com/sridharzgit/nodeapi#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "mongoose": "^6.3.0"
+    "jwt-simple": "^0.5.6",
+    "mongoose": "^6.6.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "tv4": "^1.3.0"
   }
 }

@@ -1,18 +1,24 @@
 const express = require('express')
 const router = express.Router()
-const App = require('../models/apps')
+const App = require('../models/app')
+const passportService = require('../services/passport')
+const passport = require('passport')
 
-router.get('/', async (req, res) => {
+
+
+const requireAuth = passport.authenticate('jwt',{session:false})
+router.get('/',requireAuth, async (req, res) => {
     try {
         const apps = await App.find()
-        res.json(apps)
+        res.json({"Hello":"Its me"})
     } catch (e) {
-        res.send('Error', +e)
+        res.json({"Hello":"Its not me"})
+        //res.send('Error', +e)
     }
 }
 )
 
-router.post('/create', async (req, res) => {
+router.post('/create',requireAuth, async (req, res) => {
     try {
         const apps = await App.find()
         const app_id = "a"+apps.length
@@ -45,7 +51,7 @@ router.post('/edit', async (req, res) => {
 router.post('/delete', async (req, res) => {
     try {
         const app = await App.findOneAndDelete({id:req.body.app_id})
-        
+
         res.json(app)
     } catch (e) {
         res.send('Error' + e)
