@@ -31,6 +31,19 @@ router.post('/create', async (req, res) => {
 }
 )
 
+router.post('/migrate', async (req, res) => {
+    try {
+        const app = new App(req.body)
+        console.log("Hello",req.body)
+        const newApp = await app.save()
+        res.json(newApp)
+    } catch (e) {
+        res.send('Error' + e)
+    }
+}
+)
+
+
 // router.post('/edit', async (req, res) => {
 //     try {
 //         const app = await App.findOne({id:req.body.app_id})

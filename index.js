@@ -6,10 +6,12 @@ const PORT = 9090
 const url = 'mongodb://localhost:27017/contentStore'
 
 var options = {
-  "origin": "*",
+  "origin": "http://localhost:8880",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
-  "optionsSuccessStatus": 204
+  "allowedHeaders":"Content-Type,Accept,cache-control,content-type,expires,pragma",
+  "optionsSuccessStatus": 204,
+  "credentials":true
 }
 app.use(cors(options));
 
@@ -23,6 +25,7 @@ const appsRouter = require('./routes/app')
 const viewsRouter = require('./routes/view')
 const folderViewsRouter = require('./routes/folderView')
 //app.use(cors({origin:'http://localhost:3001/'}))
+
 app.use(express.json())
 app.use('/user',userRouter)
 app.use('/apps',appsRouter)
